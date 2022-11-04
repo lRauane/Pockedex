@@ -1,27 +1,45 @@
-const offset = 0;
-const limit = 10;
-const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
+const pokemonList = document.getElementById("pokemon-list");
+const LoadMoreButton = document.getElementById("loadMoreButton")
+const limit = 5
+let offset = 0
+const maxRecords = 151
 
-function convertPokemonToLi(pokemon) {
-  return `
-  <li class="pokemon">
-  <span class="pokemon-number">#001</span>
-  <span class="pokemon-name">${pokemon.name}</span>
-  <div class="details">
-    <ol class="types">
-      <li class="type">grass</li>
-      <li class="type">orizon</li>
-    </ol>
-    <img src="./assets/001Bulbasaur_OS_Anime_3.webp" alt="${pokemon.name}" class="detail-image">
-  </div>
-</li>
-  `;
+
+function loadPokemonItems(offset, limit){
+
+  pokeApi.getPokemons(offset, limit).then((pokemons) => {
+    const newHtml = pokemons.map((pokemon) => `
+    <li class="pokemon ${pokemon.type}">
+        <span class="pokemon-number">#${pokemon.number}</span>
+        <span class="pokemon-name">${pokemon.name}</span>
+        <div class="details">
+          <ol class="types">
+            ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join(' ')}
+          </ol>
+          <img src="${pokemon.photo}" alt="${pokemon.name}" class="detail-image">
+        </div>
+    </li>
+      `).join('')
+
+    pokemonList.innerHTML += newHtml
+  })
 }
 
-const pokemonList = document.getElementById("pokemon-list");
+loadPokemonItems(offset ,limit )
 
-// Manipulando listas
-// Requisições http
-pokeApi.getPokemons().then((pokemons) => {
-  pokemonList.innerHTML += pokemons.map(convertPokemonToLi).join('') // converter em string
-});
+LoadMoreButton.addEventListener("click", () => {
+  offset += limit
+
+  const qtdRecordNextPage = offset + limit;
+
+  if(qtdRecordNextPage >= maxRecords){
+    const newLimit = qtdRecordNextPage - maxRecords
+    loadPokemonItems(offset, newLimit)
+
+    LoadMoreButton.parentElement.removeChild(LoadMoreButton);
+  } else{
+    loadPokemonItems(offset, limit)
+  }
+})
+
+

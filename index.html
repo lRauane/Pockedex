@@ -22,15 +22,28 @@
 </head>
 
 <body>
-  <section class="content">
+  <header>
     <h1>Pokedex</h1>
+  </header>
+  <main>
+    <section class="content">
+    
     <ol id="pokemon-list" class="pokemons">
      
     </ol>
 
+    <div class="pagination">
+      <button type="button" id="loadMoreButton">
+        Load More...
+      </button>
+    </div>
+
   </section>
+  </main>
+  
 
   <!-- Javascript -->
+  <script src="./assets/js/pokemonModel.js"></script>
   <script src="./assets/js/pokeApi.js"></script>
   <script src="./assets/js/main.js"></script>
 </body>
