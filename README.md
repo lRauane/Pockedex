@@ -14,7 +14,9 @@
 <br>
 
 <p align="center">
- 
+ ![screencapture-pokedex-lrauane-vercel-app-2022-11-06-13_38_44](https://user-images.githubusercontent.com/102835801/200183096-542e0bb2-ccec-4fac-b40e-5ef6adc95f89.png)
+
+
 </p>
 
 ## 🚀 Tecnologias
