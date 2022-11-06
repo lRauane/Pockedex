@@ -37,7 +37,7 @@ Projeto de uma pokedex com Protocolo HTTP e Integrando com PokeAPI.
 
 ## 🔖 Layout e Deploy
 
-Acesse esse site por: [Netlify](https://portfolio-rauanel.netlify.app/)
+Acesse esse site por: [Vercel](https://pokedex-lrauane.vercel.app/)
 
 
 ## :memo: Licença
